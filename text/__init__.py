@@ -62,8 +62,8 @@ def _clean_text(text, cleaner_names):
   return text
 
 
-def _symbols_to_sequence(symbols):
-  return [_symbol_to_id[s] for s in symbols if _should_keep_symbol(s)]
+def _symbols_to_sequence(syms):
+  return [_symbol_to_id[s] for s in syms if _should_keep_symbol(s)]
 
 
 def _arpabet_to_sequence(text):

@@ -1,2 +1,9 @@
-FROM pytorch/pytorch:0.4_cuda9_cudnn7
-RUN pip install numpy scipy matplotlib librosa==0.6.0 tensorflow tensorboardX inflect==0.2.5 Unidecode==1.0.22 jupyter
+FROM pytorch/pytorch:1.0.1-cuda10.0-cudnn7-runtime
+
+ENV APP_HOME=/app
+WORKDIR ${APP_HOME}
+
+COPY requirements.txt ${APP_HOME}/
+RUN pip install -r ${APP_HOME}/requirements.txt
+COPY . ${APP_HOME}/
+ENTRYPOINT ["jupyter", "notebook", "--allow-root", "--ip=0.0.0.0", "--port=31337"]

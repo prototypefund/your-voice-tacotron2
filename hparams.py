@@ -9,7 +9,7 @@ def create_hparams(hparams_string=None, verbose=False):
         ################################
         # Experiment Parameters        #
         ################################
-        epochs=500,
+        epochs=50,
         iters_per_checkpoint=1000,
         seed=1234,
         dynamic_loss_scaling=True,
@@ -24,9 +24,13 @@ def create_hparams(hparams_string=None, verbose=False):
         # Data Parameters             #
         ################################
         load_mel_from_disk=False,
-        training_files='filelists/ljs_audio_text_train_filelist.txt',
-        validation_files='filelists/ljs_audio_text_val_filelist.txt',
-        text_cleaners=['english_cleaners'],
+        training_files='train_split.tsv',
+        validation_files='dev_split.tsv',
+        text_cleaners=['basic_cleaners'],
+        data_separator='\t',
+        audio_field=1,
+        text_field=2,
+        speaker_field=0,
 
         ################################
         # Audio Parameters             #
@@ -46,6 +50,9 @@ def create_hparams(hparams_string=None, verbose=False):
         n_symbols=len(symbols),
         symbols_embedding_dim=512,
 
+        n_speakers=265,
+        speaker_embedding_dim=256,
+
         # Encoder parameters
         encoder_kernel_size=5,
         encoder_n_convolutions=3,
@@ -62,7 +69,7 @@ def create_hparams(hparams_string=None, verbose=False):
 
         # Attention parameters
         attention_rnn_dim=1024,
-        attention_dim=128,
+        attention_dim=192,
 
         # Location Layer parameters
         attention_location_n_filters=32,
